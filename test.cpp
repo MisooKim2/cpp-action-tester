@@ -1,16 +1,13 @@
-#include <iostream>
-#include <cassert>
+#include <gtest/gtest.h>
 #include "main.cpp"
-using namespace std;
 
-void testConcatenate() {
-    assert(concatenate("Hello", " World") == "Hello World");
-    assert(concatenate("GitHub", " Actions") == "GitHub Actions");
-    assert(concatenate("", "Test") == "Test");
-    std::cout << "All tests passed!" << std::endl;
+// Test case for concatenate function
+TEST(ConcatenateTest, HandlesNonEmptyStrings) {
+    EXPECT_EQ(concatenate("Hello", " World"), "Hello World");
+    EXPECT_EQ(concatenate("GitHub", " Actions"), "GitHub Actions");
 }
 
-int main() {
-    testConcatenate();
-    return 0;
+TEST(ConcatenateTest, HandlesEmptyStrings) {
+    EXPECT_EQ(concatenate("", "Test"), "Test");
+    EXPECT_EQ(concatenate("Test", ""), "Test");
 }
